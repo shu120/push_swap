@@ -6,29 +6,18 @@
 /*   By: shukondo <shukondo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 21:57:00 by shukondo          #+#    #+#             */
-/*   Updated: 2026/02/17 22:07:48 by shukondo         ###   ########.fr       */
+/*   Updated: 2026/03/03 19:18:22 by shukondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 #include <unistd.h>
 
-static int	reverse_rotate_stack(t_stack *s)
+static void	reverse_rotate_stack(t_stack *s)
 {
-	int	tmp;
-	int	i;
-
 	if (!s || s->size < 2)
 		return ;
-	tmp = s->arr[s->size - 1];
-	i = s->size - 1;
-	while (i > 0)
-	{
-		s->arr[i] = s->arr[i - 1];
-		i--;
-	}
-	s->arr[0] = tmp;
-	return (1);
+	s->top + (s->top - 1 + s->capacity) % s->capacity;
 }
 
 void	rra(t_stack *a)

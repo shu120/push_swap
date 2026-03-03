@@ -6,7 +6,7 @@
 /*   By: shukondo <shukondo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 22:01:08 by shukondo          #+#    #+#             */
-/*   Updated: 2026/02/17 22:05:41 by shukondo         ###   ########.fr       */
+/*   Updated: 2026/03/03 19:22:39 by shukondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,17 @@
 
 static void	swap_stack(t_stack *s)
 {
+	int	first;
+	int	second;
 	int	tmp;
 
 	if (!s || s->size < 2)
 		return ;
-	tmp = s->arr[0];
-	s->arr[0] = s->arr[1];
-	s->arr[1] = tmp;
-	return (1);
+	first = s->top;
+	second = (s->top + 1) % s->capacity;
+	tmp = s->arr[first];
+	s->arr[first] = s->arr[second];
+	s->arr[second] = tmp;
 }
 
 void	sa(t_stack *a)

@@ -6,7 +6,7 @@
 /*   By: shukondo <shukondo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 21:55:39 by shukondo          #+#    #+#             */
-/*   Updated: 2026/02/17 22:09:02 by shukondo         ###   ########.fr       */
+/*   Updated: 2026/03/03 19:23:30 by shukondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,20 @@
 
 static int	push_stack(t_stack *from, t_stack *to)
 {
-	int	i;
+	int	val;
 
-	if (!from || from->size == 0)
+	if (!from || !to)
 		return (0);
-	i = to->size;
-	while (i > 0)
-	{
-		to->arr[i] = to->arr[i - 1];
-		i--;
-	}
-	to->arr[0] = from->arr[0];
-	to->size++;
-	i = 0;
-	while (i < from->size - 1)
-	{
-		from->arr[i] = from->arr[i + 1];
-		i++;
-	}
+	if (from->size == 0)
+		return (0);
+	if (to->size >= to->capacity)
+		return (0);
+	val = from->arr[from->top];
+	from->top = (from->top + 1) % from->capacity;
 	from->size--;
+	to->top = (to->top - 1 + to->capacity) % to->capacity;
+	to->arr[to->top] = val;
+	to->size++;
 	return (1);
 }
 

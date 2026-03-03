@@ -6,7 +6,7 @@
 /*   By: shukondo <shukondo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 21:56:15 by shukondo          #+#    #+#             */
-/*   Updated: 2026/02/17 22:06:55 by shukondo         ###   ########.fr       */
+/*   Updated: 2026/03/03 19:16:40 by shukondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,9 @@
 
 static void	rotate_stack(t_stack *s)
 {
-	int	tmp;
-	int	i;
-
 	if (!s || s->size < 2)
 		return ;
-	tmp = s->arr[0];
-	i = 0;
-	while (i < s->size - 1)
-	{
-		s->arr[i] = s->arr[i + 1];
-		i++;
-	}
-	s->arr[s->size - 1] = tmp;
-	return (1);
+	s->top = (s->top + 1) % s->capacity;
 }
 
 void	ra(t_stack *a)
