@@ -6,12 +6,14 @@
 /*   By: shukondo <shukondo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 21:32:09 by shukondo          #+#    #+#             */
-/*   Updated: 2026/03/03 19:12:09 by shukondo         ###   ########.fr       */
+/*   Updated: 2026/03/03 21:09:35 by shukondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+
+# include "libft/libft.h"
 
 typedef struct s_stack
 {
@@ -32,5 +34,10 @@ void	rr(t_stack *a, t_stack *b);
 void	rra(t_stack *a);
 void	rrb(t_stack *b);
 void	rrr(t_stack *a, t_stack *b);
+int		parse_input(int argc, char **argv, t_stack *a);
+int		is_valid_number(const char *s);
+long	ft_atol(const char *s);
+int		check_duplicate(int *arr, int size);
+void	error_exit(void);		
 
 #endif
