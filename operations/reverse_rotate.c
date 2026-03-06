@@ -6,35 +6,39 @@
 /*   By: shukondo <shukondo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 21:57:00 by shukondo          #+#    #+#             */
-/*   Updated: 2026/03/03 21:01:54 by shukondo         ###   ########.fr       */
+/*   Updated: 2026/03/07 01:39:41 by shukondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-#include <unistd.h>
 
-static void	reverse_rotate_stack(t_stack *s)
+static int	reverse_rotate(t_stack *s)
 {
 	if (!s || s->size < 2)
-		return ;
+		return (0);
 	s->top = (s->top - 1 + s->capacity) % s->capacity;
+	return (1);
 }
 
 void	rra(t_stack *a)
 {
-	reverse_rotate_stack(a);
-	write(1, "rra\n", 4);
+	if (reverse_rotate(a))
+		write(1, "rra\n", 4);
 }
 
 void	rrb(t_stack *b)
 {
-	reverse_rotate_stack(b);
-	write(1, "rrb\n", 4);
+	if (reverse_rotate(b))
+		write(1, "rrb\n", 4);
 }
 
 void	rrr(t_stack *a, t_stack *b)
 {
-	reverse_rotate_stack(a);
-	reverse_rotate_stack(b);
-	write(1, "rrr\n", 4);
+	int	moved_a;
+	int	moved_b;
+
+	moved_a = reverse_rotate(a);
+	moved_b = reverse_rotate(b);
+	if (moved_a || moved_b)
+		write(1, "rrr\n", 4);
 }

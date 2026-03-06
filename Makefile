@@ -6,7 +6,7 @@
 #    By: shukondo <shukondo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/17 21:32:06 by shukondo          #+#    #+#              #
-#    Updated: 2026/03/03 21:11:51 by shukondo         ###   ########.fr        #
+#    Updated: 2026/03/07 00:29:57 by shukondo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,11 @@ SRCS = main.c \
 	   parsing/validate.c \
 	   parsing/duplicate.c \
 	   parsing/parse_input.c \
-	   parsing/error.c
+	   parsing/error.c \
+	   sorting/is_sorted.c \
+	   sorting/small_sort.c \
+	   sorting/idx_compress.c \
+	   sorting/radix_sort.c
 
 OBJS = $(SRCS:.c=.o)
 

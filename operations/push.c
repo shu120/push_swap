@@ -6,14 +6,13 @@
 /*   By: shukondo <shukondo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 21:55:39 by shukondo          #+#    #+#             */
-/*   Updated: 2026/03/03 19:23:30 by shukondo         ###   ########.fr       */
+/*   Updated: 2026/03/07 01:39:29 by shukondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-#include <unistd.h>
 
-static int	push_stack(t_stack *from, t_stack *to)
+static int	push(t_stack *from, t_stack *to)
 {
 	int	val;
 
@@ -34,12 +33,12 @@ static int	push_stack(t_stack *from, t_stack *to)
 
 void	pa(t_stack *a, t_stack *b)
 {
-	if (push_stack(b, a))
+	if (push(b, a))
 		write(1, "pa\n", 3);
 }
 
 void	pb(t_stack *a, t_stack *b)
 {
-	if (push_stack(a, b))
+	if (push(a, b))
 		write(1, "pb\n", 3);
 }
