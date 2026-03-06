@@ -6,7 +6,7 @@
 #    By: shukondo <shukondo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/17 21:32:06 by shukondo          #+#    #+#              #
-#    Updated: 2026/03/07 00:29:57 by shukondo         ###   ########.fr        #
+#    Updated: 2026/03/07 02:07:58 by shukondo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,4 +55,24 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+test100: $(NAME)
+	@ARG="$$(jot 100 1 100 | sort -R | paste -sd ' ' -)"; \
+	echo "$$ARG"; \
+	./$(NAME) $$ARG | wc -l
+
+test500: $(NAME)
+	@ARG="$$(jot 500 1 500 | sort -R | paste -sd ' ' -)"; \
+	echo "$$ARG"; \
+	./$(NAME) $$ARG | wc -l
+
+check100: $(NAME)
+	@ARG="$$(jot 100 1 100 | sort -R | paste -sd ' ' -)"; \
+	echo "$$ARG"; \
+	./$(NAME) $$ARG | ./checker_Mac $$ARG
+
+check500: $(NAME)
+	@ARG="$$(jot 500 1 500 | sort -R | paste -sd ' ' -)"; \
+	echo "$$ARG"; \
+	./$(NAME) $$ARG | ./checker_Mac $$ARG
+
+.PHONY: all clean fclean re test100 test500 check100 check500
