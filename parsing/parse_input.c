@@ -6,7 +6,7 @@
 /*   By: shukondo <shukondo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 20:54:54 by shukondo          #+#    #+#             */
-/*   Updated: 2026/03/03 20:58:09 by shukondo         ###   ########.fr       */
+/*   Updated: 2026/03/05 21:01:37 by shukondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static void	free_split(char **sp)
 {
 	int	i;
 
+	if (!sp)
+		return ;
 	i = 0;
 	while (sp[i])
 	{
@@ -24,6 +26,19 @@ static void	free_split(char **sp)
 		i++;
 	}
 	free(sp);
+}
+
+static int	parse_number(char *s, int *out)
+{
+	long	val;
+
+	if (!is_valid_number(s))
+		return (0);
+	val = ft_atol(s);
+	if (val < INT_MIN || val > INT_MAX)
+		return (0);
+	*out = (int)val;
+	return (1);
 }
 
 static int	count_tokens(int argc, char **argv)
@@ -38,8 +53,11 @@ static int	count_tokens(int argc, char **argv)
 	while (i < argc)
 	{
 		sp = ft_split(argv[i], ' ');
-		if (!sp)
+		if (!sp || !sp[0])
+		{
+			free_split(sp);
 			return (-1);
+		}
 		j = 0;
 		while (sp[j])
 		{
@@ -57,11 +75,10 @@ static int	fill_numbers(int argc, char **argv, int *arr)
 	int		i;
 	int		j;
 	int		k;
-	long	val;
 	char	**sp;
 
-	k = 0;
 	i = 1;
+	k = 0;
 	while (i < argc)
 	{
 		sp = ft_split(argv[i], ' ');
@@ -70,12 +87,9 @@ static int	fill_numbers(int argc, char **argv, int *arr)
 		j = 0;
 		while (sp[j])
 		{
-			if (!is_valid_number(sp[j]))
+			if (!parse_number(sp[j], &arr[k]))
 				return (free_split(sp), 0);
-			val = ft_atol(sp[j]);
-			if (val < INT_MIN || val > INT_MAX)
-				return (free_split(sp), 0);
-			arr[k++] = (int)val;
+			k++;
 			j++;
 		}
 		free_split(sp);
@@ -89,8 +103,6 @@ int	parse_input(int argc, char **argv, t_stack *a)
 	int	count;
 	int	*tmp;
 
-	if (argc < 2)
-		return (0);
 	count = count_tokens(argc, argv);
 	if (count <= 0)
 		error_exit();
