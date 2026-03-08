@@ -109,9 +109,9 @@ The overall execution flow is:
 - build `stack a`
 - initialize `stack b`
 - stop immediately if `stack a` is already sorted
-- use small_sort when the number of elements is small
-- otherwise compress values into indices
-- sort the indices with radix sort
+- check the input size
+  - if the number of elements is small, use small_sort
+  - otherwise, compress values into indices and sort them with radix sort
 - print the generated operation sequence
 ---
 ### Stack representation
@@ -145,7 +145,7 @@ The implementation follows these steps:
 - reject duplicates
 - initialize `stack a`
 
-Notes on numeric conversion
+Notes on numeric conversion:
 
 A custom `ft_atol` is used instead of relying on a simple `atoi`, because the project must detect values outside the valid integer range.
 
@@ -154,7 +154,7 @@ A custom `ft_atol` is used instead of relying on a simple `atoi`, because the pr
 
 The project implements all subject operations in a separate operations/ directory.
 
-These include:
+The `operations/` directory includes:
 - swap operations
 - push operations
 - rotate operations
@@ -162,12 +162,13 @@ These include:
 
 A command is printed only when the operation is actually performed.
 
-For example:
+For example, the following operations do nothing:
 
 - trying to swap a stack with fewer than two elements does nothing
 - trying to push from an empty stack does nothing
 - trying to rotate a stack of size 0 or 1 does nothing
-- This prevents invalid or useless instructions from being printed.
+
+This prevents invalid or useless instructions from being printed.
 
 ---
 ### Sorting strategy
@@ -188,13 +189,15 @@ Since only a limited number of permutations exist, it is simpler and more effici
 
 ##### For 4 or 5 elements
 
-The smallest values are pushed to `stack b`, the remaining three values are sorted, and then the saved values are pushed back to `stack a`.
+The smallest values are pushed to `stack b` until only three elements remain in `stack a`.  
+The remaining three elements are then sorted, and the saved values are pushed back to `stack a`.
+
 
 This reduces the number of operations compared with using radix sort on very small inputs.
 
 #### 2. Large-case sorting
 
-When the input is larger, the program uses:
+When the input is large, the program uses:
 
 - index compression
 - radix sort
@@ -227,7 +230,7 @@ For each bit position:
 - if the current bit is `0`, the value is pushed to `stack b`
 - if the current bit is `1`, the value remains in `stack a` and `stack a` is rotated
 
-After one full pass over `stack a`, all elements in `stack b` are pushed back to `stack a`.
+After all elements in stack a have been processed, all elements in `stack b` are pushed back to `stack a`.
 
 This process is repeated until all relevant bit positions have been processed.
 
