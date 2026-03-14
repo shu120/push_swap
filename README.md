@@ -166,7 +166,7 @@ For example, the following operations do nothing:
 
 - trying to swap a stack with fewer than two elements does nothing
 - trying to push from an empty stack does nothing
-- trying to rotate a stack of size 0 or 1 does nothing
+- trying to rotate a stack of size `0` or `1` does nothing
 
 This prevents invalid or useless instructions from being printed.
 
@@ -189,7 +189,7 @@ Since only a limited number of permutations exist, it is simpler and more effici
 
 ##### For 4 or 5 elements
 
-The smallest values are pushed to `stack b` until only three elements remain in `stack a`.  
+The smallest values are pushed to `stack b` until only three elements remain in `stack a`.
 The remaining three elements are then sorted, and the saved values are pushed back to `stack a`.
 
 
@@ -230,7 +230,7 @@ For each bit position:
 - if the current bit is `0`, the value is pushed to `stack b`
 - if the current bit is `1`, the value remains in `stack a` and `stack a` is rotated
 
-After all elements in stack a have been processed, all elements in `stack b` are pushed back to `stack a`.
+After all elements in `stack a` have been processed, all elements in `stack b` are pushed back to `stack a`.
 
 This process is repeated until all relevant bit positions have been processed.
 
@@ -244,7 +244,7 @@ This process is repeated until all relevant bit positions have been processed.
 #### Index compression
 
 - copying values is `O(n)`
-- sorting the copied array with `qsort` is `O(n log n)`
+- sorting the copied array is `O(n^2)`
 - locating compressed indices is `O(n^2)` in the current implementation
 
 #### Radix sort
@@ -298,6 +298,8 @@ These helper targets generate random inputs and measure the number of instructio
 
 ### Documentation
 - The official 42 subject PDF
+- man 3 atoi
+- man 3 atol
 
 ---
 ### Articles & Tutorials
