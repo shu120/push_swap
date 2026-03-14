@@ -6,7 +6,7 @@
 /*   By: shukondo <shukondo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 21:55:39 by shukondo          #+#    #+#             */
-/*   Updated: 2026/03/07 01:39:29 by shukondo         ###   ########.fr       */
+/*   Updated: 2026/03/14 18:49:13 by shukondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ static int	push(t_stack *from, t_stack *to)
 {
 	int	val;
 
-	if (!from || !to)
-		return (0);
 	if (from->size == 0)
 		return (0);
 	if (to->size >= to->capacity)
