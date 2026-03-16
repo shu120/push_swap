@@ -304,7 +304,9 @@ These helper targets generate random inputs and measure the number of instructio
 ---
 ### Articles & Tutorials
 - [C言語例文集 atol()](https://cgengo.sakura.ne.jp/atol.html)
-
+- [GPU最速ソート! Radix Sort その①](https://qiita.com/tommyecguitar/items/3c1897bceda4a06beef2)
+- [LINUXコマンド.NET shuf - 入力行をランダムに表示する](https://linuxcommand.net/shuf/)
+- 競技プログラミングの鉄則 ~アルゴリズム力と思考力を高める77の技術~
 ---
 ### Use of AI
 - Reviewing and structuring the README to ensure compliance with project requirements
